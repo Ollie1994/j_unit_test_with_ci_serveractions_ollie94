@@ -31,15 +31,12 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
 
       # Deploy JaCoCo HTML report to GitHub Pages
-      - name: Deploy coverage report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy JaCoCo report to Pages
+        uses: peaceiris/actions-gh-pages@v7
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: target/site/jacoco
-          publish_branch: gh-pages
-          user_name: github-actions
-          user_email: github-actions@github.com
-
+          
       # Print the URL to access the report
       - name: Show coverage report URL
         run: |
