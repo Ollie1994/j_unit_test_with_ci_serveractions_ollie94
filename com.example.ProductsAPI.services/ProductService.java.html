@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProductsAPI</a> &gt; <a href="index.source.html" class="el_package">com.example.ProductsAPI.services</a> &gt; <span class="el_source">ProductService.java</span></div><h1>ProductService.java</h1><pre class="source lang-java linenums">package com.example.ProductsAPI.services;
+
+import com.example.ProductsAPI.dto.ProductDTO;
+import com.example.ProductsAPI.models.Product;
+import com.example.ProductsAPI.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.NoSuchElementException;
+
+@Service
+<span class="fc" id="L13">public class ProductService {</span>
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    /**
+     * Creates a new product based on the provided ProductDTO.
+     *
+     * @param productDTO The data transfer object containing product details.
+     * @return The saved product with an assigned ID.
+     * @throws IllegalArgumentException if required fields are missing or invalid.
+     */
+    // ignorera varningen, den kommer pga ingen controller
+    public Product createProduct(ProductDTO productDTO) {
+
+<span class="pc bpc" id="L28" title="2 of 4 branches missed.">        if (productDTO.getName() == null || productDTO.getName().trim().isEmpty()) {</span>
+<span class="nc" id="L29">            throw new IllegalArgumentException(&quot;Product name cannot be null or empty.&quot;);</span>
+        }
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (productDTO.getPrice() &lt; 0) {</span>
+<span class="nc" id="L32">            throw new IllegalArgumentException(&quot;Product price cannot be negative.&quot;);</span>
+        }
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (productDTO.getStockQuantity() &lt; 0) {</span>
+<span class="nc" id="L35">            throw new IllegalArgumentException(&quot;Stock quantity cannot be negative.&quot;);</span>
+        }
+
+<span class="fc" id="L38">        Product product = new Product();</span>
+<span class="fc" id="L39">        product.setName(productDTO.getName());</span>
+<span class="fc" id="L40">        product.setDescription(productDTO.getDescription());</span>
+<span class="fc" id="L41">        product.setColor(productDTO.getColor());</span>
+<span class="fc" id="L42">        product.setPrice(productDTO.getPrice());</span>
+<span class="fc" id="L43">        product.setStockQuantity(productDTO.getStockQuantity());</span>
+
+<span class="fc" id="L45">        return productRepository.save(product);</span>
+    }
+
+    /**
+     * Retrieves all products from the repository.
+     *
+     * @return A list of all products.
+     */
+    public List&lt;Product&gt; getAllProducts() {
+<span class="nc" id="L54">        List&lt;Product&gt; products = productRepository.findAll();</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (products == null) {</span>
+<span class="nc" id="L56">            throw new IllegalArgumentException(&quot;Failed to fetch products.&quot;);</span>
+        }
+<span class="nc" id="L58">        return products;</span>
+    }
+
+    /**
+     * Deletes a product by its ID.
+     *
+     * @param productId The ID of the product to delete.
+     * @throws NoSuchElementException if the product does not exist.
+     */
+    public void deleteProduct(String productId) {
+<span class="nc" id="L68">        Product product = productRepository.findById(productId)</span>
+<span class="nc" id="L69">                .orElseThrow(() -&gt; new RuntimeException(&quot;Product not found with id: &quot; + productId));</span>
+
+<span class="nc" id="L71">        productRepository.deleteById(productId);</span>
+<span class="nc" id="L72">    }</span>
+
+    /**
+     * Retrieves products by their name.
+     *
+     * @param name The name of the products to retrieve.
+     * @return A list of products matching the given name.
+     * @throws IllegalArgumentException if the name is null or empty.
+     * @throws NoSuchElementException if no products match the given name.
+     */
+    public List&lt;Product&gt; getProductsByName(String name) {
+<span class="nc bnc" id="L83" title="All 4 branches missed.">        if (name == null || name.trim().isEmpty()) {</span>
+<span class="nc" id="L84">            throw new IllegalArgumentException(&quot;Product name cannot be null or empty.&quot;);</span>
+        }
+
+<span class="nc" id="L87">        List&lt;Product&gt; products = productRepository.findByName(name);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (products.isEmpty()) {</span>
+<span class="nc" id="L89">          throw new NoSuchElementException(&quot;No products found with name: &quot; + name);</span>
+        }
+
+<span class="nc" id="L92">        return products;</span>
+    }
+
+    /**
+     * Retrieves products within a specified price range.
+     *
+     * @param minPrice The minimum price.
+     * @param maxPrice The maximum price.
+     * @return A list of products within the price range.
+     * @throws IllegalArgumentException if minPrice &gt; maxPrice or any price is negative.
+     */
+    public List&lt;Product&gt; getProductsByPriceRange(double minPrice, double maxPrice) {
+<span class="nc bnc" id="L104" title="All 4 branches missed.">        if (minPrice &lt; 0 || maxPrice &lt; 0) {</span>
+<span class="nc" id="L105">            throw new IllegalArgumentException(&quot;Price values cannot be negative.&quot;);</span>
+        }
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (minPrice &gt; maxPrice) {</span>
+<span class="nc" id="L108">            throw new IllegalArgumentException(&quot;minPrice cannot be greater than maxPrice.&quot;);</span>
+        }
+
+<span class="nc" id="L111">        List&lt;Product&gt; products = productRepository.findByPriceBetween(minPrice, maxPrice);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (products.isEmpty()) {</span>
+<span class="nc" id="L113">            throw new NoSuchElementException(&quot;No products found within price range: &quot; + minPrice + &quot; - &quot; + maxPrice);</span>
+        }
+
+<span class="nc" id="L116">        return products;</span>
+    }
+
+    /**
+     * Retrieves products by their color.
+     *
+     * @param color The color of the products to retrieve.
+     * @return A list of products matching the given color.
+     * @throws IllegalArgumentException if the color is null or empty.
+     * @throws NoSuchElementException if no products match the given color.
+     */
+    public List&lt;Product&gt; getProductsByColor(String color) {
+<span class="nc bnc" id="L128" title="All 4 branches missed.">        if (color == null || color.trim().isEmpty()) {</span>
+<span class="nc" id="L129">            throw new IllegalArgumentException(&quot;Product color cannot be null or empty.&quot;);</span>
+        }
+
+<span class="nc" id="L132">        List&lt;Product&gt; products = productRepository.findByColor(color);</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (products.isEmpty()) {</span>
+<span class="nc" id="L134">            throw new NoSuchElementException(&quot;No products found with color: &quot; + color);</span>
+        }
+
+<span class="nc" id="L137">        return products;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
