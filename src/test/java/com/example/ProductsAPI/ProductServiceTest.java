@@ -43,7 +43,7 @@ public class ProductServiceTest {
         productDTO.setDescription("Description C");
         productDTO.setColor("Green");
         productDTO.setPrice(30.99);
-        productDTO.setStockQuantity(300);
+        productDTO.setStockQuantity(3001);
 
         // Create a product that represents the saved object without id
         Product savedProduct = new Product();
