@@ -31,7 +31,7 @@ public class ProductServiceTest {
 
     /**
      * Test createProduct method to ensure that a product is created correctly
-     * Test för PR
+     * Test för PR 2
      */
     @Test
     public void testCreateProduct_Success() {
