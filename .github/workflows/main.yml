@@ -21,3 +21,5 @@ jobs:
         run: mvn verify jacoco:report
       - name: Security scan
         run: mvn org.owasp:dependency-check-maven:check
+        env: 
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
