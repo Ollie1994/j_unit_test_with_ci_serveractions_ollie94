@@ -1,5 +1,6 @@
 package com.example.ProductsAPI.services;
 
+import com.example.ProductsAPI.dto.ProductDTO;
 import com.example.ProductsAPI.models.Product;
 import com.example.ProductsAPI.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ProductService {
      * @throws IllegalArgumentException if required fields are missing or invalid.
      */
     // ignorera varningen, den kommer pga ingen controller
-    public Product createProduct(Product product) {
+    public Product createProduct(ProductDTO productDTO) {
 
         if (productDTO.getName() == null || productDTO.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Product name cannot be null or empty.");
