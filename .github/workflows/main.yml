@@ -40,5 +40,5 @@ jobs:
       # Print the URL to access the report
       - name: Show coverage report URL
         run: |
-          echo "Coverage report URL: https://$GITHUB_REPOSITORY_OWNER.github.io/$GITHUB_REPOSITORY_NAME/"
+          echo "Coverage report URL: https://$GITHUB_REPOSITORY_OWNER.github.io/$GITHUB_REPOSITORY_NAME/index.html"
 
