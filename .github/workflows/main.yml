@@ -23,6 +23,21 @@ jobs:
         run: mvn org.owasp:dependency-check-maven:check
         env: 
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectKey: your-org_your-repo
+          organization: your-org
+          token: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Build and analyze with Maven
+        run: mvn clean verify sonar:sonar \
+              -Dsonar.projectKey=your-org_your-repo \
+              -Dsonar.organization=your-org \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
       # Deploy JaCoCo HTML report to GitHub Pages
       - name: Deploy JaCoCo report to Pages
         uses: peaceiris/actions-gh-pages@v4
