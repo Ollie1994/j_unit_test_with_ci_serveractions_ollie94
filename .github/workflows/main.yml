@@ -25,6 +25,7 @@ jobs:
       - name: Run Semgrep SAST scan
         uses: semgrep/semgrep-action@v1
         with:
+          config: './.semgrep-rules/java-jwt-hardcoded-secret.yml'
           publishToken: ${{ secrets.SEMGREP_TOKEN }}    
         
       - name: Build and test with coverage
