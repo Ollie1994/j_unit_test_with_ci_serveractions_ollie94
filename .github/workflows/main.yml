@@ -23,10 +23,10 @@ jobs:
         
       # SemGrep SAST scan
       - name: Run Semgrep full repo scan
-        uses: semgrep/semgrep-action@v1
+        uses: semgrep/semgrep-action@v2
         with:
           config: "auto"
-          extra_args: "--verbose"
+          verbose: true
         
       - name: Build and test with coverage
         run: mvn verify jacoco:report
