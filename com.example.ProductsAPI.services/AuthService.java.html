@@ -3,16 +3,22 @@
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 public class AuthService {
     private static final String SECRET = &quot;myjwtsecret&quot;;
-<span class="nc" id="L9">    String awsKey = &quot;AKIA123456789EXAMPLE&quot;;</span>
-<span class="nc" id="L10">    String awsSecret = &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;;</span>
-<span class="nc" id="L11">    MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
-<span class="nc" id="L12">    String username = &quot;admin&quot;;</span>
-<span class="nc" id="L13">    String query = &quot;SELECT * FROM users WHERE username = '&quot; + username + &quot;'&quot;;</span>
+<span class="nc" id="L10">    String awsKey = &quot;AKIA123456789EXAMPLE&quot;;</span>
+<span class="nc" id="L11">    String awsSecret = &quot;wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot;;</span>
+<span class="nc" id="L12">    MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="nc" id="L13">    String username = &quot;admin&quot;;</span>
+<span class="nc" id="L14">    String query = &quot;SELECT * FROM users WHERE username = '&quot; + username + &quot;'&quot;;</span>
+<span class="nc" id="L15">    Random random = new Random(12345); // predictable seed</span>
+<span class="nc" id="L16">    int token = random.nextInt();</span>
+<span class="nc" id="L17">    public AuthService() throws NoSuchAlgorithmException {</span>
 
-<span class="nc" id="L15">    public AuthService() throws NoSuchAlgorithmException {</span>
-<span class="nc" id="L16">    }</span>
+<span class="nc" id="L19">        MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;); // insecure hash</span>
+<span class="nc" id="L20">        md.update(&quot;secret&quot;.getBytes());</span>
+<span class="nc" id="L21">        byte[] digest = md.digest();</span>
+<span class="nc" id="L22">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
