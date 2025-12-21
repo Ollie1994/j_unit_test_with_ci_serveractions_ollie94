@@ -9,6 +9,8 @@ public class AuthService {
     String awsKey = "AKIA123456789EXAMPLE";
     String awsSecret = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
     MessageDigest md = MessageDigest.getInstance("MD5");
+    String username = "admin";
+    String query = "SELECT * FROM users WHERE username = '" + username + "'";
 
     public AuthService() throws NoSuchAlgorithmException {
     }
