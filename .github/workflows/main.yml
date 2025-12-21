@@ -25,7 +25,9 @@ jobs:
       - name: Run Semgrep full repo scan
         uses: semgrep/semgrep-action@v1
         with:
-          config: "auto"
+          config: "p/auto"          
+          publishToken: ${{ secrets.SEMGREP_TOKEN }} 
+          args: "--verbose"         
         
       - name: Build and test with coverage
         run: mvn verify jacoco:report
