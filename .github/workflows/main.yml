@@ -22,10 +22,10 @@ jobs:
         run: mvn checkstyle:check || true
         
       # SemGrep SAST scan
-      - name: Run Semgrep full repo scan
+      - name: Run Semgrep SAST scan
         uses: semgrep/semgrep-action@v1
         with:
-          config: "auto"
+          publishToken: ${{ secrets.SEMGREP_TOKEN }}    
         
       - name: Build and test with coverage
         run: mvn verify jacoco:report
