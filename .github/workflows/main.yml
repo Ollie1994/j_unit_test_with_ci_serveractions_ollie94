@@ -17,11 +17,12 @@ jobs:
           cache: maven
       - name: Check code style
         run: mvn checkstyle:check || true
-      # SemGrep SAST scan  
-      - name: Run Semgrep (SAST)
+      # SemGrep SAST scan
+      - name: Run Semgrep full repo scan
         uses: semgrep/semgrep-action@v1
         with:
-          config: auto
+          config: "p/java,p/credentials,p/owasp-top-ten"
+          args: "--verbose ."
       - name: Build and test with coverage
         run: mvn verify jacoco:report
       - name: Security scan
