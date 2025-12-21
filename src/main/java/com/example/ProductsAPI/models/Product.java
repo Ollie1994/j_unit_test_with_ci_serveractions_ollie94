@@ -8,6 +8,7 @@ public class Product {
     @Id
     private String id;
     private String name;
+    public String password = "123456";
     private String description;
     private String color;
     private double price;
