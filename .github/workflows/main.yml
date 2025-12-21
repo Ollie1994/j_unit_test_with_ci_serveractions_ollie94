@@ -22,11 +22,19 @@ jobs:
         run: mvn checkstyle:check || true
         
       # SemGrep SAST scan
-      - name: Run Semgrep full repo scan
+      - name: Run Semgrep Java rules
         uses: semgrep/semgrep-action@v1
         with:
-          config: "p/java,p/credentials,p/owasp-top-ten"
-          
+          config: "p/java"
+      - name: Run Semgrep Credentials rules
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: "p/credentials"
+      - name: Run Semgrep OWASP Top 10 rules
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: "p/owasp-top-ten"
+        
       - name: Build and test with coverage
         run: mvn verify jacoco:report
         
