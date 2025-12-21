@@ -24,4 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run full repo Semgrep scan
-        run: semgrep scan --config auto . --exit-non-zero
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: "auto"
+          exit_code_if_findings: true
