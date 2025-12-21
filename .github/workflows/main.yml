@@ -30,8 +30,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=your-org_your-repo
-            -Dsonar.organization=your-org
+            -Dsonar.projectKey=j_unit_test_with_ci_serveractions_ollie94
+            -Dsonar.organization=ollie1994_org
             -Dsonar.host.url=https://sonarcloud.io
 
       # Deploy JaCoCo HTML report to GitHub Pages
