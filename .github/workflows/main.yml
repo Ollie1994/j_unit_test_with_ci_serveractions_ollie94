@@ -26,17 +26,13 @@ jobs:
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          projectKey: your-org_your-repo
-          organization: your-org
-          token: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Build and analyze with Maven
-        run: mvn clean verify sonar:sonar \
-              -Dsonar.projectKey=your-org_your-repo \
-              -Dsonar.organization=your-org \
-              -Dsonar.host.url=https://sonarcloud.io \
-              -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.projectKey=your-org_your-repo
+            -Dsonar.organization=your-org
+            -Dsonar.host.url=https://sonarcloud.io
 
       # Deploy JaCoCo HTML report to GitHub Pages
       - name: Deploy JaCoCo report to Pages
