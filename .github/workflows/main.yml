@@ -26,7 +26,7 @@ jobs:
         uses: semgrep/semgrep-action@v1
         with:
           config: "p/java,p/credentials,p/owasp-top-ten"
-          args: "--verbose ."
+          args: "."
           
       - name: Build and test with coverage
         run: mvn verify jacoco:report
