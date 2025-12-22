@@ -2,6 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 ProductsAPI,com.example.ProductsAPI.dto,ProductDTO,7,38,0,0,3,17,2,11,2,11
 ProductsAPI,com.example.ProductsAPI,ProductsApiApplication,5,3,0,0,2,1,1,1,1,1
 ProductsAPI,com.example.ProductsAPI.models,Product,0,45,0,0,0,20,0,13,0,13
+ProductsAPI,com.example.ProductsAPI.services,AuthService,42,0,0,0,12,0,1,0,1,0
 ProductsAPI,com.example.ProductsAPI.services,ProductService,142,49,26,4,31,11,21,2,6,2
 ProductsAPI,com.example.ProductsAPI.exceptions,GlobalExceptionHandler,17,3,0,0,4,1,3,1,3,1
 ProductsAPI,com.example.ProductsAPI.controllers,ProductController,64,6,0,0,12,3,6,1,6,1
