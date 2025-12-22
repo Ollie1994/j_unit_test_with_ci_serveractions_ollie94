@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
+// test 2 remove sonarcloud
 public class AuthService {
     private static final String SECRET = "myjwtsecret";
     String awsKey = "AKIA123456789EXAMPLE";
