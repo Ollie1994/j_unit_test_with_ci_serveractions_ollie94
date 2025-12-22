@@ -19,10 +19,12 @@ jobs:
         run: mvn checkstyle:check || true  
       - name: Build and test with coverage
         run: mvn verify jacoco:report
+      # Security scan of dependencies
       - name: Security scan
         run: mvn org.owasp:dependency-check-maven:check
         env: 
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
       # Deploy JaCoCo HTML report to GitHub Pages
       - name: Deploy JaCoCo report to Pages
         uses: peaceiris/actions-gh-pages@v4
