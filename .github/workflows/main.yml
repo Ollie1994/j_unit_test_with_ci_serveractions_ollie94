@@ -31,7 +31,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=Ollie1994_Org
-            -Dsonar.projectKey=j_unit_test_with_ci_serveractions_ollie94
+            -Dsonar.projectKey=j_unit_test_with_ci_serveractions_ollie94_Ollie1994_Org
             -Dsonar.python.coverage.reportPaths=coverage.xml
       # Deploy JaCoCo HTML report to GitHub Pages
       - name: Deploy JaCoCo report to Pages
