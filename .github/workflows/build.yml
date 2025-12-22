@@ -36,5 +36,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Ollie1994_j_unit_test_with_ci_serveractions_ollie94
       - name: Sonar Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@v1
+        with:
+          scanMetadataReportFile: target/sonar/report-task.txt
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
