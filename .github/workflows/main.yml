@@ -24,16 +24,6 @@ jobs:
         env: 
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=j_unit_test_with_ci_serveractions_ollie94
-            -Dsonar.organization=ollie1994_org
-            -Dsonar.host.url=https://sonarcloud.io
-
       # Deploy JaCoCo HTML report to GitHub Pages
       - name: Deploy JaCoCo report to Pages
         uses: peaceiris/actions-gh-pages@v4
