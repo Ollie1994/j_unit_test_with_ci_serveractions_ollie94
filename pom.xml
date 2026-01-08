@@ -17,6 +17,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<sonar.organization>ollie1994-org</sonar.organization>
 		<java.version>17</java.version>
 	</properties>
 
